@@ -1,3 +1,10 @@
+body {
+    background-color: #f4f4f9;
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+
 section {
     margin-bottom: 24px;
 }
