@@ -20,7 +20,7 @@ header, footer {
 
 
 section {
-    background-color: #ffffff; /* Белый фон для блоков с текстом */
+    background-color: #dcbbbb; /* Белый фон для блоков с текстом */
     border: 1px solid #e1e4e8; /* Легкая серая линия-рамка вокруг секции */
     border-radius: 6px; /* Закругленные уголки рамки */
     padding: 15px;
@@ -30,4 +30,48 @@ section {
 section h2 {
     margin-top: 0;
     color: #24292f;
+}
+/* 1. Стиль для самого модального окна */
+.order-dialog {
+    width: min(100% - 32px, 560px); /* Окно будет гибким, но не шире 560px */
+    padding: 24px;
+    border: none;                  /* Убираем уродливую стандартную рамку */
+    border-radius: 12px;           /* Красиво закругляем углы окошка */
+}
+
+/* 2. Затемнение фона за модальным окном (Задний план) */
+.order-dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный цвет */
+}
+
+/* 3. Оформление полей формы */
+.form-field {
+    margin-bottom: 16px; /* Делаем отступы между строками анкеты */
+}
+
+.form-field label {
+    display: block;      /* Заставляем подпись стоять строго НАД полем */
+    margin-bottom: 6px;
+}
+
+/* Настраиваем внешний вид строк ввода, списков и текстовых полей */
+.form-field input,
+.form-field select,
+.form-field textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+}
+
+/* Кнопка-галочка не должна растягиваться на всю ширину */
+.form-field input[type="checkbox"] {
+    width: auto;
+}
+
+/* Кнопки внизу формы */
+.form-actions {
+    display: flex; /* Выстраивает кнопку «Закрыть» и «Отправить» в один ряд */
+    gap: 12px;     /* Делаем расстояние между кнопками */
+    margin-top: 20px;
 }
