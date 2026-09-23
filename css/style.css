@@ -1,14 +1,23 @@
+* {
+    box-sizing: border-box;
+}
 body {
-    background-color: #f4f4f9;
-    font-family: sans-serif;
+   margin: 0;                     /* Убираем встроенный отступ браузера */
+    font-family: Arial, sans-serif; /* Задаем аккуратный шрифт без засечек */
+    line-height: 1.5;              /* Делаем приятный отступ между строками текста */
+    background-color: #ffffff; 
+}
+
+/* Задаем внутренние поля для шапки, главного контента и подвала */
+header, main, footer {
     padding: 20px;
 }
 
-header {
-    border-bottom: 2px solid #24292f; /* Жирная темная линия под шапкой */
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+/* Красим шапку и подвал сайта в светло-серый цвет */
+header, footer {
+    background-color: #f2f2f2;
 }
+
 
 section {
     background-color: #ffffff; /* Белый фон для блоков с текстом */
