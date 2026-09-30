@@ -2,226 +2,332 @@
    1. ПЕРЕМЕННЫЕ ПРОЕКТА (:root)
    ========================================================================== */
 :root {
-    /* Основные цвета проекта */
     --color-bg: #ffffff;
     --color-text: #222222;
     --color-muted: #666666;
-    --color-primary: #0057b8;         /* Наш фирменный синий цвет */
-    --color-primary-dark: #003f86;    /* Темно-синий для эффекта наведения */
-    --color-border: #cccccc;          /* Базовая серая рамка для полей */
-    --color-border-section: #e1e4e8;  /* Легкая серая линия для секций */
-    --color-surface: #f2f2f2;         /* Светло-серый фон для шапки и подвала */
-    --color-section-bg: #dcbbbb;      /* Цвет фона для секций из твоего кода */
-    --color-danger: #ff0020;          /* Красный цвет для ошибочных полей */
-    --color-success: #168a2f;         /* Зеленый цвет для успешной отправки */
-    --color-success-bg: #eefaf0;      /* Светло-зеленый фон сообщения об успехе */
+    --color-primary: #0057b8;
+    --color-primary-dark: #003f86;
+    --color-border: #dddddd;
+    --color-danger: #b00020;
+    --color-success: #168a2f;
+    --color-surface: #f8f9fa;
     --color-white: #ffffff;
 
-    /* Единая шкала отступов */
     --space-xs: 4px;
     --space-sm: 8px;
     --space-md: 16px;
-    --space-lg: 20px;                 /* Твой стандартный padding */
-    --space-xl: 24px;                 /* Твой нижний отступ у секций */
+    --space-lg: 24px;
+    --space-xl: 40px;
 
-    /* Скругления углов */
-    --radius-sm: 6px;                 /* Для полей, кнопок и секций */
-    --radius-lg: 12px;                /* Для модального окна */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
 
-    /* Максимальная ширина контента */
-    --container-width: 1100px;
+    --container-width: 1200px;
+    --z-index-fixed: 1000;
 }
 
 /* ==========================================================================
-   2. БАЗОВЫЕ СТИЛИ
+   2. БАЗОВЫЕ И СЕМАНТИЧЕСКИЕ СТИЛИ
    ========================================================================== */
 * {
-    box-sizing: border-box; /* Чтобы отступы и рамки не раздували ширину элементов */
+    box-sizing: border-box;
 }
 
 body {
-    margin: 0;                      /* Убираем встроенный отступ браузера */
-    font-family: Arial, sans-serif; /* Задаем аккуратный шрифт без засечек */
-    line-height: 1.5;               /* Делаем приятный отступ между строками текста */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
     color: var(--color-text);
-    background-color: var(--color-bg); 
+    background-color: var(--color-bg);
 }
 
-/* Задаем внутренние поля для шапки, главного контента и подвала */
-header, main, footer {
-    padding: var(--space-lg);
-}
-
-/* Красим шапку и подвал сайта в светло-серый цвет */
-header, footer {
-    background-color: var(--color-surface);
-}
-
-/* Настройка контентных секций */
-section {
+.container {
     max-width: var(--container-width);
-    margin: 0 auto var(--space-xl);  /* Центрируем и задаем нижний отступ */
-    background-color: var(--color-section-bg); /* Твой фон для блоков с текстом */
-    border: 1px solid var(--color-border-section); /* Легкая серая линия-рамка */
-    border-radius: var(--radius-sm);  /* Закругленные уголки рамки */
-    padding: 15px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
 }
 
-section h2 {
-    margin-top: 0;
+h1, h2, h3 {
     color: #24292f;
 }
 
 /* ==========================================================================
-   3. ОБЩИЕ ЭЛЕМЕНТЫ ИНТЕРФЕЙСА (ССЫЛКИ, КНОПКИ, СОСТОЯНИЯ)
+   3. ШАПКА И ЕДИНАЯ НАВИГАЦИЯ (Flexbox + БЭМ)
    ========================================================================== */
-a {
+.site-header {
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0 var(--space-md);
+}
+
+.site-header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: var(--space-md) 0;
+}
+
+.site-header__logo {
+    font-size: 24px;
+    font-weight: bold;
     color: var(--color-primary);
     text-decoration: none;
-    transition: color 0.2s ease; /* Плавная смена цвета при наведении */
 }
 
-a:hover {
-    color: var(--color-primary-dark); /* Темнеет при наведении мыши */
+.site-nav__list {
+    display: flex;
+    gap: var(--space-lg);
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-/* Базовый стиль кнопок */
-.button {
-    display: inline-block;
-    padding: var(--space-sm) var(--space-md);
-    color: var(--color-white);
-    background-color: var(--color-primary);
+.site-nav__link {
+    color: var(--color-text);
     text-decoration: none;
-    border: none;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    font: inherit;
-    transition: background-color 0.2s ease; /* Плавно меняем фон */
+    font-weight: 500;
+    padding: var(--space-xs) 0;
+    transition: color 0.2s ease;
 }
 
-.button:hover {
-    background-color: var(--color-primary-dark); /* Кнопка темнеет при наведении */
+.site-nav__link:hover {
+    color: var(--color-primary);
 }
 
-/* Умный фокус: виден ТОЛЬКО при навигации с клавиатуры (кнопка Tab) */
-a:focus-visible,
-.button:focus-visible,
-.form-field input:focus-visible,
-.form-field select:focus-visible,
-.form-field textarea:focus-visible,
-.form-actions button:focus-visible {
-    outline: 2px solid var(--color-primary); /* Сплошная линия вокруг элемента */
-    outline-offset: 3px;                     /* Отодвигаем рамку наружу на 3px */
+.site-nav__link--active {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
 }
 
-/* Состояние, если кнопка заблокирована (disabled) */
-.button:disabled {
-    opacity: 0.6;          /* Делаем полупрозрачной на 40% */
-    cursor: not-allowed;   /* Курсор меняется на перечеркнутый круг */
-}
-
-/* Интерактивная карточка товара (Задание 7-10 методички) */
-.product-card {
-    padding: var(--space-md);
-    margin-bottom: var(--space-md);
-    border: 1px solid var(--color-border-section);
-    border-radius: var(--radius-sm);
-    background-color: var(--color-bg);
-    transition: border-color 0.2s ease; /* Плавное подсвечивание рамки */
-}
-
-.product-card:hover {
-    border-color: var(--color-primary); /* При наведении рамка становится синей */
-}
-
-.product-card h3 {
-    margin-top: 0;
-}
-
-/* Настройка боковой панели */
-.aside-info {
-    max-width: var(--container-width);
-    margin: 0 auto var(--space-xl);
-    padding: var(--space-md);
-    border-left: 4px solid var(--color-primary); /* Акцентная линия слева */
-    background-color: var(--color-surface);
+/* Умный фокус */
+.site-nav__link:focus-visible,
+.product-card__button:focus-visible,
+.order-form__input:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
 }
 
 /* ==========================================================================
-   4. ФОРМА И МОДАЛЬНОЕ ОКНО
+   4. ХЛЕБНЫЕ КРОШКИ
    ========================================================================== */
-/* 1. Стиль для самого модального окна */
-.order-dialog {
-    width: min(100% - 32px, 560px); /* Окно будет гибким, но не шире 560px */
-    padding: var(--space-xl);       /* Использовали переменную 24px */
-    border: none;                   /* Убираем уродливую стандартную рамку */
-    border-radius: var(--radius-lg); /* Красиво закругляем углы окошка (12px) */
+.breadcrumbs {
+    padding: var(--space-sm) 0;
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
+    list-style: none;
+    display: flex;
+    gap: var(--space-sm);
+    font-size: 14px;
 }
 
-/* 2. Затемнение фона за модальным окном (Задний план) */
-.order-dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный цвет */
-}
-
-/* 3. Оформление полей формы */
-.form-field {
-    margin-bottom: var(--space-md); /* Делаем отступы между строками анкеты (16px) */
-}
-
-.form-field label {
-    display: block;                 /* Заставляем подпись стоять строго НАД полем */
-    margin-bottom: var(--radius-sm); /* Отступ до инпута (6px) */
-}
-
-/* Настраиваем внешний вид строк ввода, списков и текстовых полей */
-.form-field input,
-.form-field select,
-.form-field textarea {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid var(--color-border);    /* Переменная вместо хардкода */
-    border-radius: var(--radius-sm);          /* Переменная 6px */
-    font: inherit;                            /* Наследует Arial от body */
-    transition: border-color 0.2s ease;       /* Плавно подсвечиваем поле при наведении */
-}
-
-/* Подсветка полей формы при наведении мыши */
-.form-field input:hover,
-.form-field select:hover,
-.form-field textarea:hover {
-    border-color: var(--color-primary);       /* Рамка становится синей */
-}
-
-/* Кнопка-галочка не должна растягиваться на всю ширину */
-.form-field input[type="checkbox"] {
-    width: auto;
-}
-
-/* Маленькие подсказки под полями */
-.form-field small {
-    display: block;
-    margin-top: var(--space-xs);
+.breadcrumbs__item:not(:last-child)::after {
+    content: "/";
+    margin-left: var(--space-sm);
     color: var(--color-muted);
 }
 
-/* Кнопки внизу формы */
-.form-actions {
-    display: flex; /* Выстраивает кнопку «Закрыть» и «Отправить» в один ряд */
-    gap: 12px;     /* Делаем расстояние между кнопками */
-    margin-top: 20px;
+.breadcrumbs__link {
+    color: var(--color-primary);
+    text-decoration: none;
 }
 
-/* Выделение ошибочных полей (связка с JS валидацией из ПР №3) */
-[aria-invalid="true"] {
-    border-color: var(--color-danger) !important; /* Рамка становится красной */
-    outline-color: var(--color-danger);           /* Фокус тоже станет красным */
+.breadcrumbs__link:hover {
+    text-decoration: underline;
 }
 
-/* Сообщение об успешной отправке формы (Задание 14 методички) */
-.success-message {
-    max-width: var(--container-width);
-    margin: var(--space-lg) auto;
+.breadcrumbs__item--current {
+    color: var(--color-muted);
+}
+
+/* ==========================================================================
+   5. СЕТКА КАТАЛОГА (CSS Grid + Position Sticky)
+   ========================================================================== */
+.catalog-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+    margin-bottom: var(--space-xl);
+    margin-top: var(--space-md);
+}
+
+.catalog-filter {
+    position: sticky;
+    top: var(--space-md);
+    background-color: var(--color-surface);
     padding: var(--space-md);
-    border-left: 4px solid var(--color-success); /* Зеленая черта слева */
-    background-color: var(--color-success-bg);   /* Нежный зеленый фон */
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--space-md);
+}
+
+/* ==========================================================================
+   6. КАРТОЧКА ТОВАРА (Position Absolute)
+   ========================================================================== */
+.product-card {
+    position: relative;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-primary);
+}
+
+.product-card__badge {
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    background-color: var(--color-danger);
+    color: var(--color-white);
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: var(--radius-sm);
+    z-index: 10;
+}
+
+.product-card__badge--hit {
+    background-color: #ff9800;
+}
+
+.product-card__img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: var(--space-sm);
+}
+
+.product-card__title {
+    font-size: 18px;
+    margin: 0 0 var(--space-xs) 0;
+}
+
+.product-card__price {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-top: auto;
+    margin-bottom: var(--space-sm);
+}
+
+.product-card__button {
+    display: block;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.product-card__button:hover {
+    background-color: var(--color-primary-dark);
+}
+
+/* ==========================================================================
+   7. ТАБЛИЦА ХАРАКТЕРИСТИК
+   ========================================================================== */
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-lg) 0;
+}
+
+.specs-table__caption {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: var(--space-sm);
+}
+
+.specs-table th, 
+.specs-table td {
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+}
+
+.specs-table th {
+    background-color: var(--color-surface);
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   8. ФОРМА ЗАКАЗА
+   ========================================================================== */
+.order-form {
+    max-width: 600px;
+    background-color: var(--color-surface);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    margin-top: var(--space-md);
+}
+
+.order-form__field {
+    margin-bottom: var(--space-md);
+}
+
+.order-form__label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-weight: bold;
+}
+
+.order-form__input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font: inherit;
+    transition: border-color 0.2s ease;
+}
+
+.order-form__input:hover {
+    border-color: var(--color-primary);
+}
+
+/* ==========================================================================
+   9. ФИКСИРОВАННАЯ КНОПКА НАВЕРХ
+   ========================================================================== */
+.btn-to-top {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    z-index: var(--z-index-fixed);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-to-top:hover {
+    background-color: var(--color-primary-dark);
+    transform: scale(1.1);
 }
