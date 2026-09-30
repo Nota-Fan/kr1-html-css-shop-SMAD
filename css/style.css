@@ -1,42 +1,161 @@
-* {
-    box-sizing: border-box;
+/* ==========================================================================
+   1. ПЕРЕМЕННЫЕ ПРОЕКТА (:root)
+   ========================================================================== */
+:root {
+    /* Основные цвета проекта */
+    --color-bg: #ffffff;
+    --color-text: #222222;
+    --color-muted: #666666;
+    --color-primary: #0057b8;         /* Наш фирменный синий цвет */
+    --color-primary-dark: #003f86;    /* Темно-синий для эффекта наведения */
+    --color-border: #cccccc;          /* Базовая серая рамка для полей */
+    --color-border-section: #e1e4e8;  /* Легкая серая линия для секций */
+    --color-surface: #f2f2f2;         /* Светло-серый фон для шапки и подвала */
+    --color-section-bg: #dcbbbb;      /* Цвет фона для секций из твоего кода */
+    --color-danger: #ff0020;          /* Красный цвет для ошибочных полей */
+    --color-success: #168a2f;         /* Зеленый цвет для успешной отправки */
+    --color-success-bg: #eefaf0;      /* Светло-зеленый фон сообщения об успехе */
+    --color-white: #ffffff;
+
+    /* Единая шкала отступов */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 20px;                 /* Твой стандартный padding */
+    --space-xl: 24px;                 /* Твой нижний отступ у секций */
+
+    /* Скругления углов */
+    --radius-sm: 6px;                 /* Для полей, кнопок и секций */
+    --radius-lg: 12px;                /* Для модального окна */
+
+    /* Максимальная ширина контента */
+    --container-width: 1100px;
 }
+
+/* ==========================================================================
+   2. БАЗОВЫЕ СТИЛИ
+   ========================================================================== */
+* {
+    box-sizing: border-box; /* Чтобы отступы и рамки не раздували ширину элементов */
+}
+
 body {
-   margin: 0;                     /* Убираем встроенный отступ браузера */
+    margin: 0;                      /* Убираем встроенный отступ браузера */
     font-family: Arial, sans-serif; /* Задаем аккуратный шрифт без засечек */
-    line-height: 1.5;              /* Делаем приятный отступ между строками текста */
-    background-color: #ffffff; 
+    line-height: 1.5;               /* Делаем приятный отступ между строками текста */
+    color: var(--color-text);
+    background-color: var(--color-bg); 
 }
 
 /* Задаем внутренние поля для шапки, главного контента и подвала */
 header, main, footer {
-    padding: 20px;
+    padding: var(--space-lg);
 }
 
 /* Красим шапку и подвал сайта в светло-серый цвет */
 header, footer {
-    background-color: #f2f2f2;
+    background-color: var(--color-surface);
 }
 
-
+/* Настройка контентных секций */
 section {
-    background-color: #dcbbbb; /* Белый фон для блоков с текстом */
-    border: 1px solid #e1e4e8; /* Легкая серая линия-рамка вокруг секции */
-    border-radius: 6px; /* Закругленные уголки рамки */
+    max-width: var(--container-width);
+    margin: 0 auto var(--space-xl);  /* Центрируем и задаем нижний отступ */
+    background-color: var(--color-section-bg); /* Твой фон для блоков с текстом */
+    border: 1px solid var(--color-border-section); /* Легкая серая линия-рамка */
+    border-radius: var(--radius-sm);  /* Закругленные уголки рамки */
     padding: 15px;
-    margin-bottom: 24px;
 }
 
 section h2 {
     margin-top: 0;
     color: #24292f;
 }
+
+/* ==========================================================================
+   3. ОБЩИЕ ЭЛЕМЕНТЫ ИНТЕРФЕЙСА (ССЫЛКИ, КНОПКИ, СОСТОЯНИЯ)
+   ========================================================================== */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s ease; /* Плавная смена цвета при наведении */
+}
+
+a:hover {
+    color: var(--color-primary-dark); /* Темнеет при наведении мыши */
+}
+
+/* Базовый стиль кнопок */
+.button {
+    display: inline-block;
+    padding: var(--space-sm) var(--space-md);
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    text-decoration: none;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font: inherit;
+    transition: background-color 0.2s ease; /* Плавно меняем фон */
+}
+
+.button:hover {
+    background-color: var(--color-primary-dark); /* Кнопка темнеет при наведении */
+}
+
+/* Умный фокус: виден ТОЛЬКО при навигации с клавиатуры (кнопка Tab) */
+a:focus-visible,
+.button:focus-visible,
+.form-field input:focus-visible,
+.form-field select:focus-visible,
+.form-field textarea:focus-visible,
+.form-actions button:focus-visible {
+    outline: 2px solid var(--color-primary); /* Сплошная линия вокруг элемента */
+    outline-offset: 3px;                     /* Отодвигаем рамку наружу на 3px */
+}
+
+/* Состояние, если кнопка заблокирована (disabled) */
+.button:disabled {
+    opacity: 0.6;          /* Делаем полупрозрачной на 40% */
+    cursor: not-allowed;   /* Курсор меняется на перечеркнутый круг */
+}
+
+/* Интерактивная карточка товара (Задание 7-10 методички) */
+.product-card {
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    border: 1px solid var(--color-border-section);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-bg);
+    transition: border-color 0.2s ease; /* Плавное подсвечивание рамки */
+}
+
+.product-card:hover {
+    border-color: var(--color-primary); /* При наведении рамка становится синей */
+}
+
+.product-card h3 {
+    margin-top: 0;
+}
+
+/* Настройка боковой панели */
+.aside-info {
+    max-width: var(--container-width);
+    margin: 0 auto var(--space-xl);
+    padding: var(--space-md);
+    border-left: 4px solid var(--color-primary); /* Акцентная линия слева */
+    background-color: var(--color-surface);
+}
+
+/* ==========================================================================
+   4. ФОРМА И МОДАЛЬНОЕ ОКНО
+   ========================================================================== */
 /* 1. Стиль для самого модального окна */
 .order-dialog {
     width: min(100% - 32px, 560px); /* Окно будет гибким, но не шире 560px */
-    padding: 24px;
-    border: none;                  /* Убираем уродливую стандартную рамку */
-    border-radius: 12px;           /* Красиво закругляем углы окошка */
+    padding: var(--space-xl);       /* Использовали переменную 24px */
+    border: none;                   /* Убираем уродливую стандартную рамку */
+    border-radius: var(--radius-lg); /* Красиво закругляем углы окошка (12px) */
 }
 
 /* 2. Затемнение фона за модальным окном (Задний план) */
@@ -46,12 +165,12 @@ section h2 {
 
 /* 3. Оформление полей формы */
 .form-field {
-    margin-bottom: 16px; /* Делаем отступы между строками анкеты */
+    margin-bottom: var(--space-md); /* Делаем отступы между строками анкеты (16px) */
 }
 
 .form-field label {
-    display: block;      /* Заставляем подпись стоять строго НАД полем */
-    margin-bottom: 6px;
+    display: block;                 /* Заставляем подпись стоять строго НАД полем */
+    margin-bottom: var(--radius-sm); /* Отступ до инпута (6px) */
 }
 
 /* Настраиваем внешний вид строк ввода, списков и текстовых полей */
@@ -60,8 +179,17 @@ section h2 {
 .form-field textarea {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid #cccccc;
-    border-radius: 6px;
+    border: 1px solid var(--color-border);    /* Переменная вместо хардкода */
+    border-radius: var(--radius-sm);          /* Переменная 6px */
+    font: inherit;                            /* Наследует Arial от body */
+    transition: border-color 0.2s ease;       /* Плавно подсвечиваем поле при наведении */
+}
+
+/* Подсветка полей формы при наведении мыши */
+.form-field input:hover,
+.form-field select:hover,
+.form-field textarea:hover {
+    border-color: var(--color-primary);       /* Рамка становится синей */
 }
 
 /* Кнопка-галочка не должна растягиваться на всю ширину */
@@ -69,9 +197,31 @@ section h2 {
     width: auto;
 }
 
+/* Маленькие подсказки под полями */
+.form-field small {
+    display: block;
+    margin-top: var(--space-xs);
+    color: var(--color-muted);
+}
+
 /* Кнопки внизу формы */
 .form-actions {
     display: flex; /* Выстраивает кнопку «Закрыть» и «Отправить» в один ряд */
     gap: 12px;     /* Делаем расстояние между кнопками */
     margin-top: 20px;
+}
+
+/* Выделение ошибочных полей (связка с JS валидацией из ПР №3) */
+[aria-invalid="true"] {
+    border-color: var(--color-danger) !important; /* Рамка становится красной */
+    outline-color: var(--color-danger);           /* Фокус тоже станет красным */
+}
+
+/* Сообщение об успешной отправке формы (Задание 14 методички) */
+.success-message {
+    max-width: var(--container-width);
+    margin: var(--space-lg) auto;
+    padding: var(--space-md);
+    border-left: 4px solid var(--color-success); /* Зеленая черта слева */
+    background-color: var(--color-success-bg);   /* Нежный зеленый фон */
 }
