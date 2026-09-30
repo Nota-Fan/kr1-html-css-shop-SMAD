@@ -16,77 +16,64 @@
             <!-- Тег nav показывает браузеру, что это главное меню -->
            <nav class="site-nav">
   <ul class="site-nav__list">
-    <li><a href="index.html" class="site-nav__link site-nav__link--active">Главная</a></li>
+    <li><a href="index.html" class="site-nav__link">Главная</a></li>
     <li><a href="catalog.html" class="site-nav__link">Каталог</a></li>
     <li><a href="index.html#advantages" class="site-nav__link">Преимущества</a></li> <!-- Якорная ссылка -->
     <li><a href="order.html" class="site-nav__link">Оформить заказ</a></li>
-    <li><a href="contacts.html" class="site-nav__link">Контакты</a></li>
+    <li><a href="contacts.html" class="site-nav__link site-nav__link--active">Контакты</a></li>
   </ul>
 </nav>
 
         </div>
     </header>
-    <main>
-        <section class="hero">
-            <h1>Учебный интернет-магазин</h1>
-            <p>
-                Это стартовая страница учебного frontend-проекта.
-                В дальнейшем на её основе будет разработан многостраничный сайт
-                интернет-магазина или каталога услуг.
-            </p>
-            <a class="button" href="#popular">Перейти к товарам</a>
-        </section>
+   <main class="container">
+  <!-- Хлебные крошки -->
+  <nav class="breadcrumbs">
+    <span class="breadcrumbs__item"><a href="index.html" class="breadcrumbs__link">Главная</a></span>
+    <span class="breadcrumbs__item breadcrumbs__item--current">Контакты</span>
+  </nav>
 
-        <!-- Блок преимуществ -->
-        <section class="section" id="advantages">
-            <h2>Преимущества проекта</h2>
-            <ul class="advantages-list">
-                <li>понятная HTML-структура;</li>
-                <li>семантические блоки страницы;</li>
-                <li>подключение внешнего CSS-файла;</li>
-                <li>подготовка к разработке многостраничного сайта.</li>
-            </ul>
-        </section>
+  <h1>Контакты магазина кроссовок</h1>
 
-        <!-- Блок товаров (используем article для каждой карточки) -->
-        <section class="section" id="popular">
-            <h2>Популярные товары</h2>
-            <article class="product-card">
-                <h3>Товар 1</h3>
-                <p>Краткое описание учебного товара.</p>
-                <p>Цена: 1000 руб.</p>
-                 <button class="button product-card__button" type="button" data-product="Товар 1">
-            Заказать
-                 </button>
-            </article>
-            <article class="product-card">
-                <h3>Товар 2</h3>
-                <p>Краткое описание учебного товара.</p>
-                <p>Цена: 1500 руб.</p>
-                 <button class="button product-card__button" type="button" data-product="Товар 2">
-            Заказать
-                </button>           
-             </article>
-            <article class="product-card">
-                <h3>Товар 3</h3>
-                <p>Краткое описание учебного товара.</p>
-                <p>Цена: 2000 руб.</p>
-                 <button class="button product-card__button" type="button" data-product="Товар 3">
-            Заказать
-                </button>
-            </article>
-        </section>
+  <!-- Используем тег aside для боковой инфы и Flexbox для размещения -->
+  <div class="catalog-layout" style="grid-template-columns: 1fr 1fr;">
+    
+    <!-- Блок 1: Наша инфа (Используем семантичный тег section) -->
+    <section class="contact-info" style="background-color: var(--color-surface); padding: var(--space-lg); border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+      <h2>Наш флагманский магазин</h2>
+      <p><strong>Адрес:</strong> г. Москва, ул. Тверская, д. 12, стр. 1</p>
+      <p><strong>Телефон:</strong> <a href="tel:+74951234567" style="color: var(--color-primary);">+7 (495) 123-45-67</a></p>
+      <p><strong>Email:</strong> <a href="mailto:info@sneakers-shop.ru" style="color: var(--color-primary);">info@sneakers-shop.ru</a></p>
+      <p><strong>Режим работы:</strong> Ежедневно с 10:00 до 22:00 без перерывов</p>
+      
+      <!-- Якорная ссылка по методичке -->
+      <p style="margin-top: var(--space-lg);">Хотите заказать модель, которой нет в каталоге? <a href="order.html" class="site-nav__link" style="color: var(--color-primary); text-decoration: underline;">Перейдите на страницу заказа</a> и оставьте заявку!</p>
+    </section>
 
-        <!-- Дополнительный блок aside (сбоку/вспомогательный) -->
-        <aside class="aside-info">
-            <h2>Информация для студентов</h2>
-            <p>
-                На следующих практических занятиях этот проект будет расширяться:
-                появятся формы, модальное окно, дополнительные страницы, Flex/Grid,
-                БЭМ-структура и адаптивная версия сайта.
-            </p>
-        </aside>
-    </main>
+    <!-- Блок 2: Форма обратной связи (Задание 10 методички) -->
+    <section class="contact-feedback">
+      <h2>Напишите нам</h2>
+      <form class="order-form" action="#" method="POST" style="max-width: 100%;">
+        
+        <div class="order-form__field">
+          <label class="order-form__label" for="feedback-name">Имя</label>
+          <input class="order-form__input" type="text" id="feedback-name" name="feedback-name" required>
+        </div>
+
+        <div class="order-form__field">
+          <label class="order-form__label" for="feedback-msg">Ваше сообщение</label>
+          <textarea class="order-form__input" id="feedback-msg" name="feedback-msg" rows="5" required placeholder="Задайте свой вопрос тут..."></textarea>
+        </div>
+
+        <button class="product-card__button" type="submit" style="width: 100%; padding: 12px 0;">Отправить сообщение</button>
+      </form>
+    </section>
+
+  </div>
+
+  <a href="#" class="btn-to-top">↑</a>
+</main>
+
 
     <!-- ПОДВАЛ С КАНТАКТАМИ -->
     <footer id="contacts">
@@ -164,3 +151,4 @@
     </p>
 </body>
 </html>
+

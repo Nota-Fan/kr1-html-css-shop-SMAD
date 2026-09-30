@@ -14,10 +14,10 @@
         <div class="site-header">
             <a class="site-logo" href="index.html">ShopProject</a>
             <!-- Тег nav показывает браузеру, что это главное меню -->
-           <nav class="site-nav">
+            <nav class="site-nav">
   <ul class="site-nav__list">
-    <li><a href="index.html" class="site-nav__link site-nav__link--active">Главная</a></li>
-    <li><a href="catalog.html" class="site-nav__link">Каталог</a></li>
+    <li><a href="index.html" class="site-nav__link">Главная</a></li>
+    <li><a href="catalog.html" class="site-nav__link site-nav__link--active">Каталог</a></li>
     <li><a href="index.html#advantages" class="site-nav__link">Преимущества</a></li> <!-- Якорная ссылка -->
     <li><a href="order.html" class="site-nav__link">Оформить заказ</a></li>
     <li><a href="contacts.html" class="site-nav__link">Контакты</a></li>
@@ -26,67 +26,70 @@
 
         </div>
     </header>
-    <main>
-        <section class="hero">
-            <h1>Учебный интернет-магазин</h1>
-            <p>
-                Это стартовая страница учебного frontend-проекта.
-                В дальнейшем на её основе будет разработан многостраничный сайт
-                интернет-магазина или каталога услуг.
-            </p>
-            <a class="button" href="#popular">Перейти к товарам</a>
-        </section>
+   <main class="container">
+  <!-- Хлебные крошки (Доработка высокого уровня) -->
+  <nav class="breadcrumbs">
+    <span class="breadcrumbs__item"><a href="index.html" class="breadcrumbs__link">Главная</a></span>
+    <span class="breadcrumbs__item breadcrumbs__item--current">Каталог кроссовок</span>
+  </nav>
 
-        <!-- Блок преимуществ -->
-        <section class="section" id="advantages">
-            <h2>Преимущества проекта</h2>
-            <ul class="advantages-list">
-                <li>понятная HTML-структура;</li>
-                <li>семантические блоки страницы;</li>
-                <li>подключение внешнего CSS-файла;</li>
-                <li>подготовка к разработке многостраничного сайта.</li>
-            </ul>
-        </section>
+  <h1>Каталог кроссовок</h1>
 
-        <!-- Блок товаров (используем article для каждой карточки) -->
-        <section class="section" id="popular">
-            <h2>Популярные товары</h2>
-            <article class="product-card">
-                <h3>Товар 1</h3>
-                <p>Краткое описание учебного товара.</p>
-                <p>Цена: 1000 руб.</p>
-                 <button class="button product-card__button" type="button" data-product="Товар 1">
-            Заказать
-                 </button>
-            </article>
-            <article class="product-card">
-                <h3>Товар 2</h3>
-                <p>Краткое описание учебного товара.</p>
-                <p>Цена: 1500 руб.</p>
-                 <button class="button product-card__button" type="button" data-product="Товар 2">
-            Заказать
-                </button>           
-             </article>
-            <article class="product-card">
-                <h3>Товар 3</h3>
-                <p>Краткое описание учебного товара.</p>
-                <p>Цена: 2000 руб.</p>
-                 <button class="button product-card__button" type="button" data-product="Товар 3">
-            Заказать
-                </button>
-            </article>
-        </section>
+  <!-- Layout каталога: Фильтр слева + Сетка товаров справа -->
+  <div class="catalog-layout">
+    
+    <!-- Боковой фильтр (Position Sticky по методичке) -->
+    <aside class="catalog-filter">
+      <h3>Фильтры</h3>
+      <form>
+        <p><strong>Бренд:</strong></p>
+        <label><input type="checkbox" name="brand" value="nike"> Nike</label><br>
+        <label><input type="checkbox" name="brand" value="adidas"> Adidas</label><br>
+        <label><input type="checkbox" name="brand" value="puma"> Puma</label>
+        
+        <p><strong>Размер:</strong></p>
+        <label><input type="checkbox" name="size" value="41"> 41</label>
+        <label><input type="checkbox" name="size" value="42"> 42</label>
+        <label><input type="checkbox" name="size" value="43"> 43</label>
+      </form>
+    </aside>
 
-        <!-- Дополнительный блок aside (сбоку/вспомогательный) -->
-        <aside class="aside-info">
-            <h2>Информация для студентов</h2>
-            <p>
-                На следующих практических занятиях этот проект будет расширяться:
-                появятся формы, модальное окно, дополнительные страницы, Flex/Grid,
-                БЭМ-структура и адаптивная версия сайта.
-            </p>
-        </aside>
-    </main>
+    <!-- Сетка товаров (CSS Grid) -->
+    <div class="catalog-grid">
+      
+      <!-- Карточка 1 (С бейджем "Хит") -->
+      <article class="product-card">
+        <div class="product-card__badge product-card__badge--hit">Хит</div>
+        <img class="product-card__img" src="https://unsplash.com" alt="Кроссовки Nike Air Max">
+        <h3 class="product-card__title">Nike Air Max 90</h3>
+        <p class="product-card__price">14 990 ₽</p>
+        <!-- Ссылка на страницу товара product.html -->
+        <a href="product.html" class="product-card__button" style="text-align: center; text-decoration: none;">Подробнее</a>
+      </article>
+
+      <!-- Карточка 2 (Со скидкой) -->
+      <article class="product-card">
+        <div class="product-card__badge">Скидка</div>
+        <img class="product-card__img" src="https://unsplash.com" alt="Кроссовки Adidas Superstar">
+        <h3 class="product-card__title">Adidas Superstar</h3>
+        <p class="product-card__price">9 990 ₽</p>
+        <a href="product.html" class="product-card__button" style="text-align: center; text-decoration: none;">Подробнее</a>
+      </article>
+
+      <!-- Карточка 3 -->
+      <article class="product-card">
+        <img class="product-card__img" src="https://unsplash.com" alt="Кроссовки Puma RS-X">
+        <h3 class="product-card__title">Puma RS-X Bold</h3>
+        <p class="product-card__price">11 490 ₽</p>
+        <a href="product.html" class="product-card__button" style="text-align: center; text-decoration: none;">Подробнее</a>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- Фиксированная кнопка Наверх (Position Fixed по методичке) -->
+  <a href="#" class="btn-to-top">↑</a>
+</main>
 
     <!-- ПОДВАЛ С КАНТАКТАМИ -->
     <footer id="contacts">
