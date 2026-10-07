@@ -331,3 +331,10 @@ h1, h2, h3 {
     background-color: var(--color-primary-dark);
     transform: scale(1.1);
 }
+.main-grid {
+    display: grid;
+    /* Автоматически распределяет карточки по горизонтали (минимум 250px на карточку) */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--space-md); /* Отступ между карточками */
+    margin-top: var(--space-md);
+}
