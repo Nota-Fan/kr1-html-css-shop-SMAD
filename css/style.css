@@ -1,16 +1,230 @@
 /* ==========================================================================
-   ДОРАБОТКИ ПРАКТИКИ №8 (Уникальные бейджи и кнопки)
+   1. ПЕРЕМЕННЫЕ ПРОЕКТА И ДИЗАЙН-СИСТЕМА (:root)
    ========================================================================== */
-.product-card__badge--discount {
-    background-color: var(--color-danger);
+:root {
+    --color-bg: #ffffff;
+    --color-text: #222222;
+    --color-muted: #666666;
+    --color-primary: #0057b8;
+    --color-primary-dark: #003f86;
+    --color-border: #dddddd;
+    --color-danger: #b00020;
+    --color-success: #168a2f;
+    --color-surface: #f8f9fa;
+    --color-white: #ffffff;
+
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 40px;
+
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+
+    --container-width: 1200px;
+    --z-index-fixed: 1000;
 }
 
-.product-card__badge--new {
-    background-color: var(--color-success);
+/* Base Reset */
+* {
+    box-sizing: border-box;
 }
 
-/* Стили колонок контактов из скриншота */
-.contacts-layout {
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+h1, h2, h3 {
+    color: #24292f;
+}
+
+/* ==========================================================================
+   2. ШАПКА И ЕДИНАЯ НАВИГАЦИЯ (Flexbox + БЭМ)
+   ========================================================================== */
+.site-header {
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0 var(--space-md);
+}
+
+.site-header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: var(--space-md) 0;
+}
+
+.site-header__logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.site-nav__list {
+    display: flex;
+    gap: var(--space-lg);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.site-nav__link {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 500;
+    padding: var(--space-xs) 0;
+    transition: color 0.2s ease;
+}
+
+.site-nav__link:hover {
+    color: var(--color-primary);
+}
+
+.site-nav__link--active {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+}
+
+/* ФИЧА 6: Доступность (Умный видимый фокус) */
+.site-nav__link:focus-visible,
+.order-form__input:focus-visible,
+.button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+/* ==========================================================================
+   3. ХЛЕБНЫЕ КРОШКИ (breadcrumbs)
+   ========================================================================== */
+.breadcrumbs {
+    padding: var(--space-sm) 0;
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-md);
+    list-style: none;
+    display: flex;
+    gap: var(--space-sm);
+    font-size: 14px;
+}
+
+.breadcrumbs__item:not(:last-child)::after {
+    content: "/";
+    margin-left: var(--space-sm);
+    color: var(--color-muted);
+}
+
+.breadcrumbs__link {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.breadcrumbs__link:hover {
+    text-decoration: underline;
+}
+
+.breadcrumbs__item--current {
+    color: var(--color-muted);
+}
+
+/* ==========================================================================
+   4. СЕТКА КАТАЛОГА (CSS Grid + Position Sticky)
+   ========================================================================== */
+.catalog-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+    margin-bottom: var(--space-xl);
+    margin-top: var(--space-md);
+}
+
+.catalog-filter {
+    position: sticky;
+    top: var(--space-md);
+    background-color: var(--color-surface);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+}
+
+.catalog-grid, .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--space-md);
+}
+
+/* ==========================================================================
+   5. КАРТОЧКА ТОВАРА И ДЕТАЛЬНЫЙ СТЕНД (ФИЧА 7: Position Absolute/Relative)
+   ========================================================================== */
+.product-card {
+    position: relative; /* Родительский контейнер */
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-primary);
+}
+
+/* Позиционирование бейджа */
+.product-card__badge {
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    color: var(--color-white);
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: var(--radius-sm);
+    z-index: 10;
+}
+
+.product-card__badge--hit { background-color: #ff9800; }
+.product-card__badge--discount { background-color: var(--color-danger); }
+.product-card__badge--new { background-color: var(--color-success); }
+
+.product-card__img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: var(--space-sm);
+}
+
+.product-card__title {
+    font-size: 18px;
+    margin: 0 0 var(--space-xs) 0;
+}
+
+.product-card__price {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-top: auto;
+    margin-bottom: var(--space-sm);
+}
+
+/* Детальный просмотр товара (product.html) */
+.product-view {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-xl);
@@ -18,24 +232,302 @@
     align-items: start;
 }
 
-.contact-info {
+.product-view__img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
     background-color: var(--color-surface);
-    padding: var(--space-lg);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     border: 1px solid var(--color-border);
+    padding: var(--space-md);
 }
 
-.contact-info__link, 
-.contact-info__action-link {
+.product-view__price {
+    font-size: 28px;
+    font-weight: bold;
     color: var(--color-primary);
+    margin: 0 0 var(--space-md) 0;
+}
+
+/* ==========================================================================
+   6. КНОПКИ (button)
+   ========================================================================== */
+.button {
+    display: block;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
     text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.button:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.button--secondary {
+    background-color: var(--color-muted);
+}
+
+.button--secondary:hover {
+    background-color: #444444;
+}
+
+/* ==========================================================================
+   7. ТАБЛИЦА ХАРАКТЕРИСТИК (specs-table)
+   ========================================================================== */
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-lg) 0;
+}
+
+.specs-table__caption {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: var(--space-sm);
+}
+
+.specs-table th, .specs-table td {
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+}
+
+.specs-table th {
+    background-color: var(--color-surface);
     font-weight: bold;
 }
 
-.contact-info__action-link {
-    text-decoration: underline;
+/* ==========================================================================
+   8. ФОРМА И МОДАЛЬНОЕ ОКНО (ФИЧА 5: dialog + ::backdrop)
+   ========================================================================== */
+.order-dialog {
+    width: min(100% - 32px, 550px);
+    border: none;
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    background-color: var(--color-white);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-.contact-info__notice {
+/* Стилизация заднего фона модалки */
+.order-dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+}
+
+.order-dialog__title {
+    margin-top: 0;
+    margin-bottom: var(--space-md);
+}
+
+.order-form {
+    width: 100%;
+    background-color: var(--color-surface);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+}
+
+.order-form__field {
+    margin-bottom: var(--space-md);
+}
+
+.order-form__field--checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+}
+
+.order-form__label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-weight: bold;
+}
+
+.order-form__input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font: inherit;
+    transition: border-color 0.2s ease;
+}
+
+.order-form__input:hover {
+    border-color: var(--color-primary);
+}
+
+.order-form__help {
+    color: var(--color-muted);
+    display: block;
+    margin-top: var(--space-xs);
+    font-size: 13px;
+}
+
+.order-form__actions {
+    display: flex;
+    gap: var(--space-md);
     margin-top: var(--space-lg);
+}
+
+/* ФИЧА 6: Подсветка ошибок доступности aria-invalid */
+.order-form__input[aria-invalid="true"] {
+    border-color: var(--color-danger);
+    background-color: #fff8f8;
+}
+
+.success-message {
+    color: var(--color-success);
+    font-weight: bold;
+    margin-top: var(--space-md);
+    padding: var(--space-sm);
+    border: 1px solid var(--color-success);
+    border-radius: var(--radius-sm);
+    background-color: #f0fff4;
+}
+
+/* ==========================================================================
+   9. ФИКСАЦИЯ И ПОДВАЛ (ФИЧА 8: Fixed кнопка «Наверх»)
+   ========================================================================== */
+.btn-to-top {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    width: 50px;
+    height: 50px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+text-decoration: none;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+z-index: var(--z-index-fixed);
+transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-to-top:hover {
+background-color: var(--color-primary-dark);
+transform: scale(1.1);
+}
+/* Разметка контактов */
+.contacts-layout {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: var(--space-xl);
+margin-bottom: var(--space-xl);
+align-items: start;
+}
+.contact-info {
+background-color: var(--color-surface);
+padding: var(--space-lg);
+border-radius: var(--radius-md);
+border: 1px solid var(--color-border);
+}
+footer {
+background-color: #222222;
+color: var(--color-white);
+padding: var(--space-lg) 0;
+text-align: center;
+margin-top: var(--space-xl);
+}
+/* ==========================================================================
+   ВИЗУАЛЬНЫЕ ДОРАБОТКИ И БЛОК ОТЗЫВОВ
+   ========================================================================== */
+
+/* 1. Эффект 3D-приподнимания карточек при наведении */
+.product-card {
+    position: relative;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    /* Плавная анимация */
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                border-color 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-8px); /* Приподнимание */
+    border-color: var(--color-primary);
+    box-shadow: 0 12px 24px rgba(0, 87, 184, 0.15); /* Красивая тень бренда */
+}
+
+/* 2. Эффект размытия заднего фона для модалки (Glassmorphism) */
+.order-dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px); /* Размытие сайта сзади */
+    transition: all 0.3s ease;
+}
+
+/* 3. Визуальный блок отзывов */
+.reviews-section {
+    margin: var(--space-xl) 0;
+    padding: var(--space-xl) 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.reviews-section__title {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+}
+
+.review-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.review-card__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.review-card__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--color-border);
+    object-fit: cover;
+}
+
+.review-card__name {
+    font-weight: bold;
+    margin: 0;
+}
+
+.review-card__rating {
+    color: #ffc107; /* Золотые звезды */
+    margin: 0;
+    font-size: 14px;
+}
+
+.review-card__text {
+    margin: 0;
+    font-style: italic;
+    color: var(--color-muted);
 }
