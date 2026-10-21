@@ -2,167 +2,129 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Каталог</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог кроссовок — ShopProject</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/main.js" defer></script>
 </head>
 <body>
 
     <!-- ШАПКА САЙТА -->
-    <header>
-        <div class="site-header">
-            <a class="site-logo" href="index.html">ShopProject</a>
-            <!-- Тег nav показывает браузеру, что это главное меню -->
-            <nav class="site-nav">
-  <ul class="site-nav__list">
-    <li><a href="index.html" class="site-nav__link">Главная</a></li>
-    <li><a href="catalog.html" class="site-nav__link site-nav__link--active">Каталог</a></li>
-    <li><a href="index.html#advantages" class="site-nav__link">Преимущества</a></li> <!-- Якорная ссылка -->
-    <li><a href="order.html" class="site-nav__link">Оформить заказ</a></li>
-    <li><a href="contacts.html" class="site-nav__link">Контакты</a></li>
-  </ul>
-</nav>
-
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="site-header__logo" href="index.html">ShopProject</a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <ul class="site-nav__list">
+                    <li class="site-nav__item"><a href="index.html" class="site-nav__link">Главная</a></li>
+                    <li class="site-nav__item"><a href="catalog.html" class="site-nav__link site-nav__link--active">Каталог</a></li>
+                    <li class="site-nav__item"><a href="index.html#advantages" class="site-nav__link">Преимущества</a></li>
+                    <li class="site-nav__item"><a href="order.html" class="site-nav__link">Оформить заказ</a></li>
+                    <li class="site-nav__item"><a href="contacts.html" class="site-nav__link">Контакты</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
-   <main class="container">
-  <nav class="breadcrumbs">
-    <span class="breadcrumbs__item"><a href="index.html" class="breadcrumbs__link">Главная</a></span>
-    <span class="breadcrumbs__item breadcrumbs__item--current">Каталог кроссовок</span>
-  </nav>
 
-  <h1>Каталог кроссовок</h1>
+    <main class="container">
+        <!-- ХЛЕБНЫЕ КРОШКИ -->
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+            <span class="breadcrumbs__item"><a href="index.html" class="breadcrumbs__link">Главная</a></span>
+            <span class="breadcrumbs__item breadcrumbs__item--current">Каталог кроссовок</span>
+        </nav>
 
-  <!-- Layout каталога: Фильтр слева + Сетка товаров справа -->
-  <div class="catalog-layout">
-    
-    <!-- Боковой фильтр (Position Sticky по методичке) -->
-    <aside class="catalog-filter">
-      <h3>Фильтры</h3>
-      <form>
-        <p><strong>Бренд:</strong></p>
-        <label><input type="checkbox" name="brand" value="nike"> Nike</label><br>
-        <label><input type="checkbox" name="brand" value="adidas"> Adidas</label><br>
-        <label><input type="checkbox" name="brand" value="puma"> Puma</label>
-        
-        <p><strong>Размер:</strong></p>
-        <label><input type="checkbox" name="size" value="41"> 41</label>
-        <label><input type="checkbox" name="size" value="42"> 42</label>
-        <label><input type="checkbox" name="size" value="43"> 43</label>
-      </form>
-    </aside>
+        <h1>Каталог кроссовок</h1>
 
-    <!-- Сетка товаров (CSS Grid) -->
-    <div class="catalog-grid">
-      
-      <!-- Карточка 1 (С бейджем "Хит") -->
-      <article class="product-card">
-        <div class="product-card__badge product-card__badge--hit">Хит</div>
-        <img class="product-card__img" src="https://unsplash.com" alt="Кроссовки Nike Air Max">
-        <h3 class="product-card__title">Nike Air Max 90</h3>
-        <p class="product-card__price">14 990 ₽</p>
-        <!-- Ссылка на страницу товара product.html -->
-        <a href="product.html" class="product-card__button" style="text-align: center; text-decoration: none;">Подробнее</a>
-      </article>
+        <div class="catalog-layout">
+            <!-- Боковой липкий фильтр -->
+            <aside class="catalog-filter">
+                <h3>Фильтры</h3>
+                <form>
+                    <p><strong>Бренд:</strong></p>
+                    <label><input type="checkbox" name="brand" value="nike"> Nike</label><br>
+                    <label><input type="checkbox" name="brand" value="adidas"> Adidas</label><br>
+                    <label><input type="checkbox" name="brand" value="puma"> Puma</label>
+                    
+                    <p><strong>Размер:</strong></p>
+                    <label><input type="checkbox" name="size" value="41"> 41</label>
+                    <label><input type="checkbox" name="size" value="42"> 42</label>
+                    <label><input type="checkbox" name="size" value="43"> 43</label>
+                </form>
+            </aside>
 
-      <!-- Карточка 2 (Со скидкой) -->
-      <article class="product-card">
-        <div class="product-card__badge">Скидка</div>
-        <img class="product-card__img" src="https://unsplash.com" alt="Кроссовки Adidas Superstar">
-        <h3 class="product-card__title">Adidas Superstar</h3>
-        <p class="product-card__price">9 990 ₽</p>
-        <a href="product.html" class="product-card__button" style="text-align: center; text-decoration: none;">Подробнее</a>
-      </article>
+            <!-- Сетка товаров с доработками (Добавили 4-й товар и разные бейджи) -->
+            <div class="catalog-grid">
+                <!-- Карточка 1 (Хит) -->
+                <article class="product-card">
+                    <div class="product-card__badge product-card__badge--hit">Хит</div>
+                    <img class="product-card__img" src="https://unsplash.com" alt="Nike Air Max 90">
+                    <h3 class="product-card__title">Nike Air Max 90</h3>
+                    <p class="product-card__price">14 990 ₽</p>
+                    <a href="product-nike.html" class="button product-card__button">Подробнее</a>
+                </article>
 
-      <!-- Карточка 3 -->
-      <article class="product-card">
-        <img class="product-card__img" src="https://unsplash.com" alt="Кроссовки Puma RS-X">
-        <h3 class="product-card__title">Puma RS-X Bold</h3>
-        <p class="product-card__price">11 490 ₽</p>
-        <a href="product.html" class="product-card__button" style="text-align: center; text-decoration: none;">Подробнее</a>
-      </article>
+                <!-- Карточка 2 (Скидка) -->
+                <article class="product-card">
+                    <div class="product-card__badge product-card__badge--discount">Скидка</div>
+                    <img class="product-card__img" src="https://unsplash.com" alt="Adidas Superstar">
+                    <h3 class="product-card__title">Adidas Superstar</h3>
+                    <p class="product-card__price">9 990 ₽</p>
+                    <a href="product-adidas.html" class="button product-card__button">Подробнее</a>
+                </article>
 
-    </div>
-  </div>
+                <!-- Карточка 3 (Обычная) -->
+                <article class="product-card">
+                    <img class="product-card__img" src="https://unsplash.com" alt="Puma RS-X Bold">
+                    <h3 class="product-card__title">Puma RS-X Bold</h3>
+                    <p class="product-card__price">11 490 ₽</p>
+                    <a href="product-puma.html" class="button product-card__button">Подробнее</a>
+                </article>
 
-  <!-- Фиксированная кнопка Наверх (Position Fixed по методичке) -->
-  <a href="#" class="btn-to-top">↑</a>
-</main>
+                <!-- Карточка 4 (Самостоятельная доработка: Новинка!) -->
+                <article class="product-card">
+                    <div class="product-card__badge product-card__badge--new">Новинка</div>
+                    <img class="product-card__img" src="https://unsplash.com" alt="Nike Air Force 1">
+                    <h3 class="product-card__title">Nike Air Force 1</h3>
+                    <p class="product-card__price">12 990 ₽</p>
+                    <a href="product-nike.html" class="button product-card__button">Подробнее</a>
+                </article>
+            </div>
+        </div>
 
-    <!-- ПОДВАЛ С КАНТАКТАМИ -->
-    <footer id="contacts">
+        <a href="#" class="btn-to-top">↑</a>
+    </main>
+
+    <footer>
         <p>&copy; 2026 Учебный проект. Все права защищены.</p>
         <p>Дисциплина: Фронтенд и бэкенд разработка</p>
     </footer>
-     <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
-        <h2 id="order-dialog-title">Оформление заявки</h2>
-        
+
+    <!-- Модальное окно быстрого заказа (вызывается из карточек) -->
+    <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
+        <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
         <form class="order-form" id="order-form" action="#" method="post" novalidate>
-            <!-- Скрытое поле для передачи названия товара -->
             <input id="selected-product" name="selected-product" type="hidden">
-
-            <!-- Поле: Имя -->
-            <div class="form-field">
-                <label for="order-name">Имя</label>
-                <input id="order-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
+            <div class="order-form__field">
+                <label class="order-form__label" for="order-name">Имя</label>
+                <input class="order-form__input" id="order-name" name="name" type="text" placeholder="Введите имя" minlength="2" required>
             </div>
-
-            <!-- Поле: E-mail -->
-            <div class="form-field">
-                <label for="order-email">E-mail</label>
-                <input id="order-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
+            <div class="order-form__field">
+                <label class="order-form__label" for="order-email">E-mail</label>
+                <input class="order-form__input" id="order-email" name="email" type="email" placeholder="example@mail.ru" required>
             </div>
-
-            <!-- Поле: Телефон -->
-            <div class="form-field">
-                <label for="order-phone">Телефон</label>
-                <input id="order-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" required>
-                <small>Формат: +7 (900) 000-00-00</small>
+            <div class="order-form__field">
+                <label class="order-form__label" for="order-phone">Телефон</label>
+                <input class="order-form__input" id="order-phone" name="phone" type="tel" placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" required>
             </div>
-
-            <!-- Поле: Дата связи -->
-            <div class="form-field">
-                <label for="order-date">Дата связи</label>
-                <input id="order-date" name="date" type="date">
+            <div class="order-form__field order-form__field--checkbox">
+                <input id="order-agreement" name="agreement" type="checkbox" required>
+                <label for="order-agreement">Я согласен на обработку данных</label>
             </div>
-
-            <!-- Поле: Тема заявки (Выпадающий список) -->
-            <div class="form-field">
-                <label for="order-topic">Тема заявки</label>
-                <select id="order-topic" name="topic" required>
-                    <option value="">Выберите тему</option>
-                    <option value="product">Заказ товара</option>
-                    <option value="consultation">Консультация</option>
-                    <option value="delivery">Доставка</option>
-                </select>
-            </div>
-
-            <!-- Поле: Комментарий (Многострочное поле) -->
-            <div class="form-field">
-                <label for="order-comment">Комментарий</label>
-                <textarea id="order-comment" name="comment" rows="4" placeholder="Укажите дополнительную информацию"></textarea>
-            </div>
-
-            <!-- Поле: Чекбокс согласия -->
-            <div class="form-field form-field--checkbox">
-                <label>
-                    <input id="order-agreement" name="agreement" type="checkbox" required>
-                    Я согласен на обработку данных
-                </label>
-            </div>
-
-            <!-- Кнопки управления внутри окна -->
-            <div class="form-actions">
-                <button type="button" id="close-order-dialog">Закрыть</button>
-                <button type="submit">Отправить заявку</button>
+            <div class="order-form__actions">
+                <button type="button" class="button button--secondary" id="close-order-dialog">Закрыть</button>
+                <button type="submit" class="button">Отправить</button>
             </div>
         </form>
+        <p class="success-message" id="success-message" hidden>Форма успешно отправлена!</p>
     </dialog>
-
-    <!-- Скрытое сообщение об успешной отправке -->
-    <p class="success-message" id="success-message" hidden>
-        Форма успешно отправлена!
-    </p>
 </body>
 </html>

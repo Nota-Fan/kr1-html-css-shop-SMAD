@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контакты</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/main.js" defer></script>
@@ -10,145 +10,71 @@
 <body>
 
     <!-- ШАПКА САЙТА -->
-    <header>
-        <div class="site-header">
-            <a class="site-logo" href="index.html">ShopProject</a>
-            <!-- Тег nav показывает браузеру, что это главное меню -->
-           <nav class="site-nav">
-  <ul class="site-nav__list">
-    <li><a href="index.html" class="site-nav__link">Главная</a></li>
-    <li><a href="catalog.html" class="site-nav__link">Каталог</a></li>
-    <li><a href="index.html#advantages" class="site-nav__link">Преимущества</a></li> <!-- Якорная ссылка -->
-    <li><a href="order.html" class="site-nav__link">Оформить заказ</a></li>
-    <li><a href="contacts.html" class="site-nav__link site-nav__link--active">Контакты</a></li>
-  </ul>
-</nav>
-
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="site-header__logo" href="index.html">ShopProject</a>
+            <nav class="site-nav" aria-label="Основная навигация">
+                <ul class="site-nav__list">
+                    <li class="site-nav__item"><a href="index.html" class="site-nav__link">Главная</a></li>
+                    <li class="site-nav__item"><a href="catalog.html" class="site-nav__link">Каталог</a></li>
+                    <li class="site-nav__item"><a href="index.html#advantages" class="site-nav__link">Преимущества</a></li>
+                    <li class="site-nav__item"><a href="order.html" class="site-nav__link">Оформить заказ</a></li>
+                    <li class="site-nav__item"><a href="contacts.html" class="site-nav__link site-nav__link--active">Контакты</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
-   <main class="container">
-  <!-- Хлебные крошки -->
-  <nav class="breadcrumbs">
-    <span class="breadcrumbs__item"><a href="index.html" class="breadcrumbs__link">Главная</a></span>
-    <span class="breadcrumbs__item breadcrumbs__item--current">Контакты</span>
-  </nav>
 
-  <h1>Контакты магазина кроссовок</h1>
+    <main class="container">
+        <!-- ХЛЕБНЫЕ КРОШКИ -->
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+            <span class="breadcrumbs__item"><a href="index.html" class="breadcrumbs__link">Главная</a></span>
+            <span class="breadcrumbs__item breadcrumbs__item--current">Контакты</span>
+        </nav>
 
-  <!-- Используем тег aside для боковой инфы и Flexbox для размещения -->
-  <div class="catalog-layout" style="grid-template-columns: 1fr 1fr;">
-    
-    <!-- Блок 1: Наша инфа (Используем семантичный тег section) -->
-    <section class="contact-info" style="background-color: var(--color-surface); padding: var(--space-lg); border-radius: var(--radius-md); border: 1px solid var(--color-border);">
-      <h2>Наш флагманский магазин</h2>
-      <p><strong>Адрес:</strong> г. Москва, ул. Тверская, д. 12, стр. 1</p>
-      <p><strong>Телефон:</strong> <a href="tel:+74951234567" style="color: var(--color-primary);">+7 (495) 123-45-67</a></p>
-      <p><strong>Email:</strong> <a href="mailto:info@sneakers-shop.ru" style="color: var(--color-primary);">info@sneakers-shop.ru</a></p>
-      <p><strong>Режим работы:</strong> Ежедневно с 10:00 до 22:00 без перерывов</p>
-      
-      <!-- Якорная ссылка по методичке -->
-      <p style="margin-top: var(--space-lg);">Хотите заказать модель, которой нет в каталоге? <a href="order.html" class="site-nav__link" style="color: var(--color-primary); text-decoration: underline;">Перейдите на страницу заказа</a> и оставьте заявку!</p>
-    </section>
+        <h1>Контакты магазина кроссовок</h1>
 
-    <!-- Блок 2: Форма обратной связи (Задание 10 методички) -->
-    <section class="contact-feedback">
-      <h2>Напишите нам</h2>
-      <form class="order-form" action="#" method="POST" style="max-width: 100%;">
-        
-        <div class="order-form__field">
-          <label class="order-form__label" for="feedback-name">Имя</label>
-          <input class="order-form__input" type="text" id="feedback-name" name="feedback-name" required>
+        <!-- Двухколоночный макет контактов по БЭМ -->
+        <div class="contacts-layout">
+            
+            <!-- Блок 1: Наша инфа -->
+            <section class="contact-info">
+                <h2 class="contact-info__title">Наш флагманский магазин</h2>
+                <p class="contact-info__text"><strong>Адрес:</strong> г. Москва, ул. Тверская, д. 12, стр. 1</p>
+                <p class="contact-info__text"><strong>Телефон:</strong> <a href="tel:+74951234567" class="contact-info__link">+7 (495) 123-45-67</a></p>
+                <p class="contact-info__text"><strong>Email:</strong> <a href="mailto:info@sneakers-shop.ru" class="contact-info__link">info@sneakers-shop.ru</a></p>
+                <p class="contact-info__text"><strong>Режим работы:</strong> Ежедневно с 10:00 до 22:00 без перерывов</p>
+                
+                <p class="contact-info__notice">Хотите заказать модель, которой нет в каталоге? <a href="order.html" class="contact-info__action-link">Перейдите на страницу заказа</a> и оставьте заявку!</p>
+            </section>
+
+            <!-- Блок 2: Форма обратной связи -->
+            <section class="contact-feedback">
+                <h2>Напишите нам</h2>
+                <form class="order-form" action="#" method="POST">
+                    
+                    <div class="order-form__field">
+                        <label class="order-form__label" for="feedback-name">Имя</label>
+                        <input class="order-form__input" type="text" id="feedback-name" name="feedback-name" required>
+                    </div>
+
+                    <div class="order-form__field">
+                        <label class="order-form__label" for="feedback-msg">Ваше сообщение</label>
+                        <textarea class="order-form__input" id="feedback-msg" name="feedback-msg" rows="5" required placeholder="Задайте свой вопрос тут..."></textarea>
+                    </div>
+
+                    <button class="button" type="submit">Отправить сообщение</button>
+                </form>
+            </section>
+
         </div>
 
-        <div class="order-form__field">
-          <label class="order-form__label" for="feedback-msg">Ваше сообщение</label>
-          <textarea class="order-form__input" id="feedback-msg" name="feedback-msg" rows="5" required placeholder="Задайте свой вопрос тут..."></textarea>
-        </div>
+        <a href="#" class="btn-to-top">↑</a>
+    </main>
 
-        <button class="product-card__button" type="submit" style="width: 100%; padding: 12px 0;">Отправить сообщение</button>
-      </form>
-    </section>
-
-  </div>
-
-  <a href="#" class="btn-to-top">↑</a>
-</main>
-
-
-    <!-- ПОДВАЛ С КАНТАКТАМИ -->
-    <footer id="contacts">
-        <p>&copy; 2026 Учебный проект. Все права защищены.</p>
-        <p>Дисциплина: Фронтенд и бэкенд разработка</p>
+    <footer class="site-footer" id="contacts">
+        <p class="site-footer__text">&copy; 2026 Учебный проект. Все права защищены.</p>
+        <p class="site-footer__text">Дисциплина: Фронтенд и бэкенд разработка</p>
     </footer>
-     <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
-        <h2 id="order-dialog-title">Оформление заявки</h2>
-        
-        <form class="order-form" id="order-form" action="#" method="post" novalidate>
-            <!-- Скрытое поле для передачи названия товара -->
-            <input id="selected-product" name="selected-product" type="hidden">
-
-            <!-- Поле: Имя -->
-            <div class="form-field">
-                <label for="order-name">Имя</label>
-                <input id="order-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
-            </div>
-
-            <!-- Поле: E-mail -->
-            <div class="form-field">
-                <label for="order-email">E-mail</label>
-                <input id="order-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
-            </div>
-
-            <!-- Поле: Телефон -->
-            <div class="form-field">
-                <label for="order-phone">Телефон</label>
-                <input id="order-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" required>
-                <small>Формат: +7 (900) 000-00-00</small>
-            </div>
-
-            <!-- Поле: Дата связи -->
-            <div class="form-field">
-                <label for="order-date">Дата связи</label>
-                <input id="order-date" name="date" type="date">
-            </div>
-
-            <!-- Поле: Тема заявки (Выпадающий список) -->
-            <div class="form-field">
-                <label for="order-topic">Тема заявки</label>
-                <select id="order-topic" name="topic" required>
-                    <option value="">Выберите тему</option>
-                    <option value="product">Заказ товара</option>
-                    <option value="consultation">Консультация</option>
-                    <option value="delivery">Доставка</option>
-                </select>
-            </div>
-
-            <!-- Поле: Комментарий (Многострочное поле) -->
-            <div class="form-field">
-                <label for="order-comment">Комментарий</label>
-                <textarea id="order-comment" name="comment" rows="4" placeholder="Укажите дополнительную информацию"></textarea>
-            </div>
-
-            <!-- Поле: Чекбокс согласия -->
-            <div class="form-field form-field--checkbox">
-                <label>
-                    <input id="order-agreement" name="agreement" type="checkbox" required>
-                    Я согласен на обработку данных
-                </label>
-            </div>
-
-            <!-- Кнопки управления внутри окна -->
-            <div class="form-actions">
-                <button type="button" id="close-order-dialog">Закрыть</button>
-                <button type="submit">Отправить заявку</button>
-            </div>
-        </form>
-    </dialog>
-
-    <!-- Скрытое сообщение об успешной отправке -->
-    <p class="success-message" id="success-message" hidden>
-        Форма успешно отправлена!
-    </p>
 </body>
 </html>
-
